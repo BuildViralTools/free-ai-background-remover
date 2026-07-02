@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Free Background Remover Online - No Signup, No Watermark</title>
+  <meta name="description" content="Free image editor in browser for removing image backgrounds with AI. Upload up to 50 JPG, PNG, or WebP files, erase backgrounds locally, download transparent PNG files, and clear temporary cache after use. More free image tools at PixelCutPro.">
+  <meta name="keywords" content="free background remover, remove background online, AI background remover, free image editor in browser, transparent PNG maker, batch background remover, no watermark background remover, browser image editor">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="PixelCutPro">
+  <meta name="theme-color" content="#101820">
+  <meta property="og:title" content="Free Background Remover Online">
+  <meta property="og:description" content="Remove backgrounds from up to 50 images in your browser with AI. No signup, no watermark, transparent PNG downloads, and temporary cache cleanup.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pixelcutpro.com/free-background-remover/">
+  <meta property="og:site_name" content="PixelCutPro">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Background Remover Online">
+  <meta name="twitter:description" content="Free AI image editor in browser for removing backgrounds and downloading transparent PNG files.">
+  <link rel="canonical" href="https://pixelcutpro.com/free-background-remover/">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Free Background Remover Online",
+    "url": "https://pixelcutpro.com/free-background-remover/",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Web Browser",
+    "description": "Free image editor in browser for removing image backgrounds with AI, batch processing, transparent PNG downloads, and temporary cache cleanup.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "AI background removal",
+      "Batch processing up to 50 images",
+      "Transparent PNG downloads",
+      "No signup",
+      "No watermark",
+      "Temporary cache cleanup"
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "PixelCutPro",
+      "url": "https://pixelcutpro.com/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="https://pixelcutpro.com/" aria-label="PixelCutPro home">
+      <span class="brand-mark">PC</span>
+      <span>PixelCutPro</span>
+    </a>
+    <nav class="top-nav" aria-label="Primary navigation">
+      <a href="#tool">Tool</a>
+      <a href="#features">Features</a>
+      <a href="#more-tools">More tools</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Free image editor in browser</p>
+        <h1>Free Background Remover Online</h1>
+        <p class="hero-text">Remove image backgrounds with the high quality AI model, download transparent PNG files, and clear temporary browser memory after downloads.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#tool">Upload images</a>
+          <a class="button secondary" href="https://pixelcutpro.com/">More tools at PixelCutPro</a>
+        </div>
+      </div>
+      <div class="hero-panel" aria-label="Tool highlights">
+        <div>
+          <strong>50</strong>
+          <span>images max per batch</span>
+        </div>
+        <div>
+          <strong>PNG</strong>
+          <span>transparent export</span>
+        </div>
+        <div>
+          <strong>AI</strong>
+          <span>large browser model</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-shell" id="tool">
+      <div class="tool-header">
+        <div>
+          <h2>Upload JPG, PNG, or WebP images</h2>
+          <p>Choose up to 50 images. The AI model loads in the browser, then each result can be downloaded as a clean transparent PNG.</p>
+        </div>
+        <button class="button ghost" id="clearCacheBtn" type="button">Clear workspace cache</button>
+      </div>
+
+      <div class="status-grid" aria-live="polite">
+        <div class="status-card">
+          <span>Selected</span>
+          <strong id="selectedCount">0 / 50</strong>
+        </div>
+        <div class="status-card">
+          <span>Finished</span>
+          <strong id="finishedCount">0</strong>
+        </div>
+        <div class="status-card">
+          <span>Temporary memory</span>
+          <strong id="memoryLabel">Empty</strong>
+        </div>
+      </div>
+
+      <input id="fileInput" class="file-input" type="file" accept="image/png,image/jpeg,image/webp" multiple>
+      <div class="drop-zone" id="dropZone" role="button" tabindex="0" aria-label="Upload images">
+        <span class="drop-icon">+</span>
+        <span class="drop-title">Drop images here or browse files</span>
+        <span class="drop-note">Max 50 images, 20 MB per file. First run downloads the large AI model once.</span>
+      </div>
+
+      <div class="progress-wrap" id="progressWrap" hidden>
+        <div class="progress-label">
+          <span id="progressText">Preparing...</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-track">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+      </div>
+
+      <div class="toolbar" id="batchToolbar" hidden>
+        <button class="button primary" id="downloadAllBtn" type="button">Download all as ZIP</button>
+        <button class="button secondary" id="resetBtn" type="button">New batch</button>
+      </div>
+
+      <div class="results" id="results" aria-live="polite"></div>
+    </section>
+
+    <section class="content-grid" id="features">
+      <article>
+        <h2>Private AI background remover</h2>
+        <p>This free background remover uses the large browser-based AI model from the current project, so the main workflow runs directly on your device. It is built for product photos, profile images, social media graphics, thumbnails, and quick design cleanup.</p>
+      </article>
+      <article>
+        <h2>Built for browser health</h2>
+        <p>The app revokes temporary preview URLs after downloads and includes a manual cache cleanup button. This helps avoid leaving many generated images in browser memory after large batches.</p>
+      </article>
+      <article>
+        <h2>Batch image editor</h2>
+        <p>Upload up to 50 images in one batch, process them one by one, download individual transparent PNG files, or export all finished files as a ZIP archive.</p>
+      </article>
+    </section>
+
+    <section class="seo-copy">
+      <h2>Free image editor in browser with AI background removal</h2>
+      <p>Use this online image editor to remove background from photos, create transparent PNG files, prepare ecommerce product images, make profile pictures, and clean up visuals without installing desktop software. The tool supports JPG, PNG, and WebP input and is designed as a simple no-signup, no-watermark background remover.</p>
+    </section>
+
+    <section class="more-tools" id="more-tools">
+      <h2>More tools at PixelCutPro</h2>
+      <div class="tool-links">
+        <a href="https://pixelcutpro.com/free-background-remover/">Free AI Background Remover</a>
+        <a href="https://pixelcutpro.com/free-image-editor/">Free Image Editor</a>
+        <a href="https://pixelcutpro.com/free-image-socials-converter/">Social Media Image Resizer</a>
+        <a href="https://pixelcutpro.com/website-icon-generator/">Favicon Generator</a>
+        <a href="https://pixelcutpro.com/free-image-format-converter/">Image Format Converter</a>
+        <a href="https://pixelcutpro.com/free-image-compressor/">Image Compressor</a>
+        <a href="https://pixelcutpro.com/free-image-resizer/">Image Resizer, Crop and Rotate Tool</a>
+        <a href="https://pixelcutpro.com/exif-remover/">EXIF Remover and Metadata Viewer</a>
+        <a href="https://pixelcutpro.com/color-picker-from-image/">Color Picker From Image</a>
+        <a href="https://pixelcutpro.com/add-watermark-to-image/">Add Watermark to Image</a>
+        <a href="https://pixelcutpro.com/before-after-image-compare/">Before After Image Compare</a>
+        <a href="https://pixelcutpro.com/product-photo-background-changer/">Product Photo Background Changer</a>
+        <a href="https://pixelcutpro.com/image-to-pdf-converter/">Image to PDF Converter</a>
+        <a href="https://pixelcutpro.com/passport-photo-maker/">Passport Photo Maker</a>
+      </div>
+    </section>
+
+    <section class="faq">
+      <h2>FAQ</h2>
+      <details>
+        <summary>Is this background remover free?</summary>
+        <p>Yes. It is built as a free browser tool with no required signup and no watermark added to the transparent PNG export.</p>
+      </details>
+      <details>
+        <summary>What happens to temporary cache?</summary>
+        <p>Generated preview URLs are revoked after downloads or when you clear the workspace. The button also attempts to clear browser Cache Storage created by this app when the browser allows it.</p>
+      </details>
+      <details>
+        <summary>Why is the first run slower?</summary>
+        <p>The high quality AI background removal library and large model have to load first. After that, processing depends mostly on your device and image size.</p>
+      </details>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <footer class="site-footer">
+    <p>Free Background Remover Online by <a href="https://pixelcutpro.com/">PixelCutPro</a>. More free image tools at <a href="https://pixelcutpro.com/">https://pixelcutpro.com/</a></p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
